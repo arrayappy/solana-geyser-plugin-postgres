@@ -133,7 +133,18 @@ impl GeyserPlugin for PostgresPlugin {
                             )
                             .execute(),
                     );
-                    println!("result: {:#?}, startup: {:#?}", result, _is_startup);
+                    // account CRCJ7zzd5SSmA8AJ9gbtv4QrYZ2zw4YKWa1MCDw1NTf2 updated at slot 4!
+                    match result {
+                        Ok(_) => {
+                            println!(
+                                "account {} updated at slot {}!",
+                                account_pubkey, _slot
+                            );
+                        }
+                        Err(e) => {
+                            println!("Error updating account: {:?}", e);
+                        }
+                    }
                 }
             }
         }
